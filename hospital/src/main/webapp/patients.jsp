@@ -1,96 +1,86 @@
+<%@ page import="java.sql.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Patients</title>
+    <title>List of Patients</title>
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
         body {
-            display: flex;
-            justify-content: center;  /* horizontally center */
-            align-items: center;      /* vertically center */
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-        form {
-            background-color: #fff;
-            padding: 25px 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            width: 400px;
+            background-color: #f0f8ff;
+            padding: 20px;
         }
         h2 {
             text-align: center;
-            margin-bottom: 20px;
+            color: #333;
         }
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
+        table {
+            margin: 0 auto;
+            width: 90%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        input[type="text"],
-        input[type="number"],
-        input[type="email"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            box-sizing: border-box;
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+            text-align: left;
         }
-        textarea {
-            resize: vertical;
-        }
-        input[type="submit"] {
-            margin-top: 20px;
-            width: 100%;
-            padding: 10px;
+        th {
             background-color: #007bff;
             color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
         }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
     </style>
 </head>
 <body>
-    <form action="PatientServlet" method="post">
-        <h2>Register New Patient</h2>
+<h2>Patient List</h2>
 
-        <label>Patient ID:</label>
-        <input type="number" name="patientID" required>
+<%
+    String dbURL = "jdbc:mysql://localhost:3306/hospital_management";
+    String dbUser = "root";
+    String dbPass = "1by23is087";
 
-        <label>Name:</label>
-        <input type="text" name="name" maxlength="100" required>
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM patients");
+%>
 
-        <label>Age:</label>
-        <input type="number" name="age" required>
+<table>
+    <tr>
+        <th>Patient ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+    </tr>
 
-        <label>Gender:</label>
-        <select name="gender" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-        </select>
+<%
+    while (rs.next()) {
+%>
+    <tr>
+        <td><%= rs.getInt("patientID") %></td>
+        <td><%= rs.getString("name") %></td>
+        <td><%= rs.getInt("age") %></td>
+        <td><%= rs.getString("gender") %></td>
+        <td><%= rs.getString("phone") %></td>
+        <td><%= rs.getString("email") %></td>
+        <td><%= rs.getString("address") %></td>
+    </tr>
+<%
+    }
+    conn.close();
+} catch (Exception e) {
+    out.println("<p>Error: " + e.getMessage() + "</p>");
+}
+%>
+</table>
 
-        <label>Phone:</label>
-        <input type="text" name="phone" maxlength="15" required>
-
-        <label>Email:</label>
-        <input type="email" name="email" maxlength="100">
-
-        <label>Address:</label>
-        <textarea name="address" rows="4" cols="40"></textarea>
-
-        <input type="submit" value="Register">
-    </form>
 </body>
 </html>
+
 

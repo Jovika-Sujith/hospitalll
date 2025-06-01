@@ -64,13 +64,24 @@
         <a href="admissions.jsp" class="card"><i class="fas fa-procedures"></i>Admissions</a>
         <a href="appointments.jsp" class="card"><i class="fas fa-calendar-check"></i>Appointments</a>
         <a href="bills.jsp" class="card"><i class="fas fa-file-invoice-dollar"></i>Bills</a>
-        <a href="departments.jsp" class="card"><i class="fas fa-building"></i>Departments</a>
+        <a href="departments.jsp" class="card"><i class="fas fa-building"></i> Add new department</a>
+        
+       
+        
+        <a href="departmentStaffList.jsp" class="card"><i class="fas fa-sitemap"></i>Department List</a>
         <a href="doctors.jsp" class="card"><i class="fas fa-user-md"></i>Doctors</a>
-        <a href="medications.jsp" class="card"><i class="fas fa-pills"></i>Medications</a>
-        <a href="patients.jsp" class="card"><i class="fas fa-user-injured"></i>Patients</a>
-        <a href="rooms.jsp" class="card"><i class="fas fa-bed"></i>Rooms</a>
-        <a href="staffs.jsp" class="card"><i class="fas fa-users-cog"></i>Staff</a>
+        <a href="doctorList.jsp" class="card"><i class="fas fa-clipboard-list"></i>Doctors List</a>
+        <a href="medications.jsp" class="card"><i class="fas fa-pills"></i> Add new medications</a>
+        
+        <a href="medicationList.jsp" class="card"><i class="fas fa-capsules"></i>Medication List</a>
+        <a href="patients.jsp" class="card"><i class="fas fa-user-injured"></i>Patients List</a>
+        <a href="rooms.jsp" class="card"><i class="fas fa-bed"></i> Add new room</a>
+        <a href="roomsOccupied.jsp" class="card"><i class="fas fa-door-closed"></i>Rooms Occupied</a>
+        <a href="staffs.jsp" class="card"><i class="fas fa-users-cog"></i> Add new staff</a>
+        <a href="staffList.jsp" class="card"><i class="fas fa-list"></i> Staff List</a>
         <a href="prescriptions.jsp" class="card"><i class="fas fa-prescription"></i>Prescriptions</a>
+        <a href="patientPrescriptions.jsp" class="card"><i class="fas fa-notes-medical"></i> View Patient Prescriptions</a>
+        
     </div>
 </div>
 </body>
